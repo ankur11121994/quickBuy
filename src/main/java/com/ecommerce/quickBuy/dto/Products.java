@@ -1,11 +1,11 @@
 package com.ecommerce.quickBuy.dto;
 
-import lombok.Data;
 
-@Data
-public class Products {
-    private  String productId;
-    private String productName;
-    private String productDescription;
-    private Double productPrice;
-}
+import java.math.BigDecimal;
+
+public record Products (String productId,
+                        String productName,
+                        String productDescription,
+                        BigDecimal productPrice)
+   
+{}
