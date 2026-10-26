@@ -1,0 +1,8 @@
+#This stops build artifacts and source code from unnecessarily inflating your Docker build context:
+.git
+.gitignore
+.idea
+target
+build
+*.iml
+.mvn
