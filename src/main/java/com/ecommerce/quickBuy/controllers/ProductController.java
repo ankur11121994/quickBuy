@@ -1,14 +1,12 @@
 package com.ecommerce.quickBuy.controllers;
 
+import com.ecommerce.quickBuy.dto.PageableProduct;
 import com.ecommerce.quickBuy.dto.Products;
 import com.ecommerce.quickBuy.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +28,11 @@ public class ProductController {
     public ResponseEntity<Products> findProductById(@PathVariable Long id) {
         log.info("Fetching Product By id {}", id);
         return ResponseEntity.of(productService.getProductById(id));
+    }
+
+    @GetMapping("/products/category/{categoryId}")
+    public ResponseEntity<PageableProduct> findProductsByCategoryId(@PathVariable Long categoryId, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+        log.info("Fetching Products By categoryId {}", categoryId);
+        return ResponseEntity.ok(productService.getProductsByCategoryId(categoryId, page, size));
     }
 }

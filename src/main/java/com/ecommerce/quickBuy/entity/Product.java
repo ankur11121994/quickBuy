@@ -26,4 +26,8 @@ public class Product {
     private LocalDateTime dateCreated;
     private LocalDateTime lastUpdated;
 
+    @ManyToOne(fetch =  FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private  ProductCategory productCategory;
+
 }
